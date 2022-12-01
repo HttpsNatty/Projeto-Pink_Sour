@@ -37,11 +37,11 @@ class ProdutoController extends Controller
     // {
     //     return view('produto.create');
     // }
-    public function show($id) {
+    // public function show($id) {
 
-        $produto = Event::findOrFail($id);
+    //     $produto = Produto::findOrFail($id);
 
-        return view('produto.show', ['produto' => $produto]);        
-    }
+    //     return view('produto.show', ['produto' => $produto]);        
+    // }
 }
 ?>

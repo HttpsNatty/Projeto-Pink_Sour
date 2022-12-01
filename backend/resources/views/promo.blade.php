@@ -3,30 +3,21 @@
 @section('title', 'Pink Sour | Promoções')
 
 @section('content')
-
-<h1> Promoções </h1>
-
-
-<h2>Quinta Dose Dupla</h2>
-Venha conferir a dose dupla a noite toda
-
-
-<h2>Aniversariante</h2>
-Venha com 10 convidados e a torta é por nossa conta!
-@auth
-<a href="/reserva">Faça sua reserva</a>
-
-@endauth
-@auth
-<h2>Confira a sua Cartela Fidelidade</h2>
-@endauth
-@guest
-<h2>Cartela Fidelidade</h2>
-Faça seu cadastro ou login para ter acesso a essa vantagem!
-
-@endguest
-
-
-
-
+<center>
+<div>
+    <h1>Confira nossas promoções</h1>
+<div id="menuitens" class="row" >
+        @foreach($promocoes as $promocoe)
+        <div id="menucard" class="container">
+            <div id="card-body">
+                <div>
+                    <h2>{{ $promocoe->nome }}</h2> <br>
+                    <div>{{ $promocoe->descricao }}</div>  
+                    
+                </div>           
+            </div>
+        </div>
+    @endforeach
+</div>
+</center>
 @endsection

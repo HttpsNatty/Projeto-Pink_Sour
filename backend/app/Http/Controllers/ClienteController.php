@@ -20,14 +20,12 @@ class ClienteController extends Controller
         $email = $request->input('email');
         $data = $request->input('data');
         $senha = $request->input('senha');
-        $senha = Hash::make('secret');
         $repsenha = $request->input('repsenha');
         
         if($nome==null || $email==null || $data==null || $senha==null || $repsenha==null || $repsenha!=$senha){
             return redirect(route('cadastro'))->with('error', 'Cadastro incompleto');
         }          
-        
-              
+          
         $cliente = new Cliente;
 
         $cliente->id = $request->id;

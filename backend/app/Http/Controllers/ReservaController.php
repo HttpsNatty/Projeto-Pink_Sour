@@ -20,13 +20,38 @@ class ReservaController extends Controller
         $reserva->horas = $request->horas;
         $reserva->pessoas = $request->pessoas;
 
-        // $user = auth()->user();
-        // $reserva->user_id = $user->id;
+        $cliente = auth()->cliente();
+        $reserva->cliente_id = $cliente->id;
         
         $reserva->save();
 
         return redirect('/reserva')->with('msg', 'Reserva criada com sucesso!');
 
+    }
+
+    public function show($id) {
+
+        $reserva = Reserva::findOrFail($id);
+
+        $cliente = auth()->cliente();
+        $hasClienteJoined = false;
+
+        if($cliente) {
+
+            $clienteEvents = cliente->reservasAsParticipant->toArray();
+
+            foreach($clienteReservas as $clienteReserva) {
+                if($clienteReserva['id'] == $id) {
+                    $hasClienteJoined = true;
+                }
+            }
+
+        }
+
+        $reservaOwner = Cliente::where('id', $reserva->cliente_id)->first()->toArray();
+
+        return view('reserva.show', ['reserva' => $reserva, 'reservaOwner' => $reservaOwner, 'hasClienteJoined' => $hasClienteJoined]);
+        
     }
 
     public function destroy($id){

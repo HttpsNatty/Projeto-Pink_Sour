@@ -36,15 +36,13 @@
             <a href="/">Inicio</a>
             <a href="/cardapio">Cardapio</a>
             <a href="/promocoes">Promoções</a>
-            <!-- <a href="/">Contato</a> -->
             @auth
-                <!-- if($cliente == !null) -->
                     <form action="/logout" class="navbar-sair" method="POST">
                         @csrf
                         <a href="/logout" class="split" onclick="event.preventDefault(); this.closest('form').submit();">Sair
                         </a>
                     </form>
-                    <a href="/dashboard" class="split">USUARIO</a>
+                    <a href="/dashboard" class="split">Eu</a>
                     <img src="/img/Usuw.png" class="split" id="imagem-nav"alt="foto de usuario">
             @endauth
             @guest
@@ -77,6 +75,6 @@
 <footer>
     <center><p> Pink Sour &copy; 2022</p></center>
 </footer>
-<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<!-- <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script> -->
 </body>
 </html>

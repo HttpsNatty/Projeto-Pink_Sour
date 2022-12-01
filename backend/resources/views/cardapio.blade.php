@@ -13,7 +13,7 @@
     </form>
 </div>
 
-<div id="menudiv" class="col-md-12">
+<div>
     @if($pesquisa != '')
     <h2>Buscando por: {{ $pesquisa }}</h2>
     @else
@@ -24,7 +24,7 @@
         <div id="menucard" class="container">
             <img src="/img/Cardapio/{{ $produto->nome }}.png" alt="{{ $produto->nome }}" class="imagemCard">
             <div id="card-body" class="overlay">
-                <!-- <a href="/produto/{{ $produto->id }}" class="btn btn-primary"> -->
+                <a href="/produto/{{ $produto->id }}" class="btn btn-primary">
                 <div class="text">{{ $produto->nome }}</div>           
             </div>
         </div>

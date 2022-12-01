@@ -146,7 +146,7 @@ function checaSeValido($n){
             </div>
             <div class=".container-senha"> <!--Campo Senha-->
                 <label for="senha">Senha:</label><br>
-                <input type="password" id="senha" name="senha" placeholder="Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve conter pelo menos um número, uma letra minúscula uma letra maiúscula, e pelo menos 6 caracteres" >
+                <input type="password" id="senha" name="senha" placeholder="Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve conter pelo menos um número, uma letra minúscula uma letra maiúscula, pelo menos 6 caracteres e serem iguais" >
                 <img id="olho" onclick=mostraSenha() width="25x" src="/img/close.svg"><br>
                 <div id="message">
                     <h2>A senha deve conter:</h2>
@@ -154,12 +154,10 @@ function checaSeValido($n){
                     <p id="capital" class="invalid">Uma letra <b>maiúscula</b></p>
                     <p id="number" class="invalid">Um <b>número</b></p>
                     <p id="length" class="invalid">Ter no mínimo <b>6 caracteres</b></p>
-                    <p id="duas" class="invalid">As senhas serem <b>iguais</b></p>
                 </div>
                 <label>Confirmação senha:</label><br>
-                <input type="password" id="repsenha" id="repsenha" name="repsenha" placeholder="Repetir senha">
+                <input type="password" id="repsenha" name="repsenha" placeholder="Repetir senha">
             </div>
-            //ver a funcao js
             <div> <!--Area dos termos -->
                 <input type="checkbox" id="termos" name="termos" value="ok" style=width:150px>
                 <label>Ao se cadastar, concorda com a nossa 
@@ -196,7 +194,7 @@ function checaSeValido($n){
 
 <script language="javascript" type="text/javascript">
     let myInput = document.getElementById("senha");
-    let mymatchInput = document.getElementById("repsenha");
+    var mymatchInput = document.getElementById("repsenha");
     let letter = document.getElementById("letter");
     let capital = document.getElementById("capital");
     let number = document.getElementById("number");
@@ -251,17 +249,7 @@ myInput.onkeyup = function() {
     } else {
     length.classList.remove("valid");
     length.classList.add("invalid");
-    }
-
-  // Validação entre as senhas
-  if(myInput.value = mymatchInput){
-    duas.class.list.remove("invalid");
-    duas.classList.add("valid");
-    } else {
-    duas.classList.remove("valid");
-    duas.classList.add("invalid");
-    }
-    
+    }    
 }
     const olho = document.getElementById("olho")
     let senha = document.getElementById("senha")
