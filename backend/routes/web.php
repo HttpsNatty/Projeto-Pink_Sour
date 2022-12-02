@@ -38,9 +38,10 @@ Route::get('/cardapio', [ProdutoController::class, 'index'])->name('menu');
 Route::get('/promocoes', [PromocoeController::class, 'index'])->name('promocoes');
 Route::get('/promocoes/{id}', [PromocoeController::class, 'show'])->name('promocoes.show');
 
-Route::get('/reserva', [ReservaController::class, 'create'])->middleware('auth');
-Route::POST('/reserva', [ReservaController::class, 'store'])->middleware('auth');
-Route::get('/dashboard/{id}', [ReservaController::class, 'show'])->middleware('auth');
+Route::get('/reserva', [ReservaController::class, 'create'])->name('reserva')->middleware('auth');
+Route::POST('/reserva', [ReservaController::class, 'store'])->name('agendar')->middleware('auth');
+Route::get('/dashboard/{id}', [ReservaController::class, 'show'])->name('reserva.show')->middleware('auth');
+Route::get('/dashboard', [ReservaController::class, 'dashboard'])->middleware('auth');
 Route::delete('/dashboard/{id}', [ReservaController::class, 'destroy'])->middleware('auth');
 Route::get('/dashboard/{id}', [ReservaController::class, 'edit'])->middleware('auth');
 Route::put('/dashboard/update/{id}', [ReservaController::class, 'update'])->middleware('auth');

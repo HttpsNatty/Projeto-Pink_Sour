@@ -16,6 +16,9 @@ class ClienteController extends Controller
 {
     public function store(Request $request) {
         
+        $hoje = date('d/m/Y');
+        $data = date('d/m/Y');
+
         $nome = $request->input('nome');
         $email = $request->input('email');
         $data = $request->input('data');
@@ -24,8 +27,8 @@ class ClienteController extends Controller
         
         if($nome==null || $email==null || $data==null || $senha==null || $repsenha==null || $repsenha!=$senha){
             return redirect(route('cadastro'))->with('error', 'Cadastro incompleto');
-        }          
-          
+        }
+
         $cliente = new Cliente;
 
         $cliente->id = $request->id;
@@ -36,7 +39,7 @@ class ClienteController extends Controller
      
         $cliente->save();
 
-        return redirect(route('login'))->with('msg', 'Cadastro criado com sucesso!');
+        return redirect(route('entrar'))->with('msg', 'Cadastro criado com sucesso!');
 
     }
 
@@ -53,7 +56,9 @@ class ClienteController extends Controller
         $cliente = Cliente::query()
             ->where('email', $request->input('email'))
             ->first();
-        // Colocar um condicional de saida caso a senha esteja errada
+        if($senha !== $request->input('senha')){
+            return redirect(route('entrar'))->with('error', 'Login incorreto');
+        }
         $cliente = Cliente::find(1);
 
         Auth::login($cliente);

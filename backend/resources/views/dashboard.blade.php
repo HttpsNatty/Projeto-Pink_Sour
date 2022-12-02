@@ -12,18 +12,14 @@
     <h3>Veja o que pode fazer agora!</h3><br>
     <div class=painelopcoes>
     <a href="/reserva" class="btn-sour">Fazer Reserva</a>
-    <a href="promo" class="btn-sour">Cartela Fidelidade</a>
     </div>
 </div>
-
 <br>
-
-
-<div class="col-md-10 offset-md-1 dashboard-title-container">
+<div>
     <h2>Minhas reservas</h2>
     <br>
     <div class="col-md-10 offset-md-1 dashboard-reservas-container" style="overflow-x:auto;">
-    @if(count($reservas) > 0)
+    
         <table class="table">
             <thead>
                 <tr>
@@ -34,22 +30,23 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($reservas as $reserva)
+                @foreach($reservasFeitas as $reserva)
                     <tr>
                         <td scropt="row">{{ $loop->index + 1 }}</td>
                         <td><a href="/dashboard/{{ $reserva->id }}">{{ $reserva->data }}</a></td>
-                        <td>0</td>
-                        <td><a href="#">Editar</a>
-                        <form action="/dashboard/{{ $reserva->id }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash-outline"></ion-icon> Deletar</button>
+                        <td>
+                            <a href="/dashboard/{id}">Editar</a>
+                            <form action="/dashboard/{{ $reserva->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash-outline"></ion-icon> Deletar</button>
                         </form>
+                        <td>
                     </tr>
                 @endforeach    
             </tbody>
         </table>
-    @else
+        @if(count($reservas) > 0)
         <p>Você ainda não fez uma reserva, <a href="/reserva">Faça sua reserva</a></p>
     @endif
 </div>

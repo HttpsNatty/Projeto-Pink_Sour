@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Http\Controllers\ReservaController;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,17 +16,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('Reservas::class) //Tarefa para verificar as reservas 17:30 e enviar um email para o restaurante
-        // ->days(0,2,3,4,5,6)->at('17:30');
-        // before(function(){
-            //apagar as reservas passadas (dia anterior)
-            //Reserva::table('data')->where('status','yesterday')->delete()
-        //})
-        //$ontem ('yesterday')
-
-        //ou utilizando a classe e passando parâmetros
-        // $schedule->command(EmailsCommand::class, ['Laraveling', '--force'])
-        // ->daily();
+        //Tarefa para verificar as reservas 17:30 e enviar um email para o restaurante
+        $schedule->command('reserva:truncate')->everyMinute();
     }
 
     /**

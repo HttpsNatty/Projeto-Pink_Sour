@@ -1,3 +1,0 @@
-<template>
-    hellou
-</template>

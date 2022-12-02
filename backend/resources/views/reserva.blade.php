@@ -3,15 +3,14 @@
 @section('title', 'Pink Sour | Reserva')
 
 @section('content')
-
-<h1>Faça sua reserva</h1>
-
-<div id="reserva">
+<center>
+<div class="forms" id="reserva">
+    <h1>Faça sua reserva</h1>
     <form name="reserva" method="POST">
     @csrf
     <div id="data">
     <label for="data">Data de Reserva:</label>
-        <input type="date" name="date">
+        <input type="date" name="data" >
     </div>
     <br>
     <div id="horas">
@@ -67,4 +66,5 @@
     <p><input class="btn btn-sour" type="reset" value="Limpar"/></p>
     </form>
 </div>
+</center>
 @endsection

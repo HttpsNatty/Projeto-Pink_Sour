@@ -242,7 +242,21 @@ dashboard-title-container {
     width: 25%;    
 }
 
+/* Reserva */
+#reserva #data{
+    display: fixed; 
+    justify-content: center; 
+    align-items: center;
+    width: 60%;
+}
 
+#reserva #horas{
+    width: 20%;
+}
+
+#reserva #pessoas{
+    width: 20%;
+}
 /* Formularios Cadastro */
 .forms-Cad{ 
     display: flex; 

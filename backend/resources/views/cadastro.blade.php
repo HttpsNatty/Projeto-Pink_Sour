@@ -146,7 +146,7 @@ function checaSeValido($n){
             </div>
             <div class=".container-senha"> <!--Campo Senha-->
                 <label for="senha">Senha:</label><br>
-                <input type="password" id="senha" name="senha" placeholder="Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve conter pelo menos um número, uma letra minúscula uma letra maiúscula, pelo menos 6 caracteres e serem iguais" >
+                <input type="password" id="senha" name="senha" placeholder="Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
                 <img id="olho" onclick=mostraSenha() width="25x" src="/img/close.svg"><br>
                 <div id="message">
                     <h2>A senha deve conter:</h2>
@@ -194,12 +194,10 @@ function checaSeValido($n){
 
 <script language="javascript" type="text/javascript">
     let myInput = document.getElementById("senha");
-    var mymatchInput = document.getElementById("repsenha");
     let letter = document.getElementById("letter");
     let capital = document.getElementById("capital");
     let number = document.getElementById("number");
     let length = document.getElementById("length");
-    let duas = document.getElementById("duas");
 
 // When the user clicks on the password field, show the message box
 myInput.onfocus = function() {

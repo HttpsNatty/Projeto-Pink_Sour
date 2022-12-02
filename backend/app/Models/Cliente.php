@@ -27,11 +27,11 @@ class Cliente extends Authenticatable
         'two_factor_secret',
     ];
 
-    public function promocoes() {
-        return $this->hasMany('App\Models\Promocao');
+    public function reservas() {
+        return $this->belongsToMany('App\Models\Reserva');
     }
 
-    public function reservas() {
-        return $this->hasMany('App\Models\Reserva');
+    public function reservasFeitas() {
+        return $this->belongsToMany('App\Models\Reserva');
     }
 }
