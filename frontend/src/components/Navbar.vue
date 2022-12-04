@@ -1,30 +1,16 @@
 <template>
     <div>
       <div id="nav">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- <a to="avascript:void(0);" class="icon" @click="myFunction()"></a>
+        <i class="fas fa-bars"> 
+        </i> -->
         <div class="topnav" id="myTopnav">
             <router-link to="/" id="logo-url"><img src="/favicon.ico" class="logo" alt="Pink Sour"></router-link>
             <router-link to="/">Inicio</router-link>
-            <router-link to="/cardapio">Cardapio</router-link>
-            <router-link to="/promocoes">Promoções</router-link>
-            <!-- <a href="/">Contato</a> -->
-            @auth
-                <!-- if($cliente == !null) -->
-                    <form action="/logout" class="navbar-sair" method="POST">
-                        @csrf
-                        <router-link to="/logout" class="split" onclick="event.preventDefault(); this.closest('form').submit();">Sair
-                        </router-link>
-                    </form>
-                    <router-link href="/dashboard" class="split">USUARIO</router-link>
-                    <img src="/img/Usuw.png" class="split" id="imagem-nav">
-            @endauth
-            @guest
-                <router-link to="/entrar" class="split">Login</router-link>
-                <router-link to="/cadastro" class="split">Cadastro</router-link>
-            @endguest
-            <router-link to="javascript:void(0);" class="icon" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-            </router-link>
+            <router-link to="/cardapio">Cardapio</router-link>     
+            <router-link to="/promocoes">Promocoes</router-link>     
+            <router-link to="/entrar" class="split">Login</router-link>
+            <router-link to="/cadastro" class="split">Cadastro</router-link>
         </div>
       </div>
     </div>
@@ -32,19 +18,7 @@
   
 <script>
   export default {
-    name: "Navbar",
-    props: ["logo"],
-    
-    methods:{
-        myFunction(){
-            var x = document.getElementById("myTopnav");
-            if (x.className === "topnav") {
-                x.className += " responsive";
-            } else {
-                x.className = "topnav";
-            }
-        }
-    }
+    name: "Navbar"
 }
 </script>
   
@@ -122,4 +96,4 @@
 #imagem-nav{
     width: 10px;
 }
-  </style>
+</style>

@@ -22,6 +22,7 @@ class ReservaController extends Controller
         $reserva->data = $request->data;
         $reserva->horas = $request->horas;
         $reserva->pessoas = $request->pessoas;
+        $reserva->user_id = $request->id;
 
         if($reserva->data < $hoje){
             return redirect(route('reserva'))->with('error', 'A data já passou');
