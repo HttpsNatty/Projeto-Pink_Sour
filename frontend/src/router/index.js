@@ -8,7 +8,7 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/cardapio',
+    path: '/cardapioo',
     name: 'Cardapio',
     component: () => import(/* webpackChunkName: "cardapio" */ '../views/CardapioView.vue')
   },

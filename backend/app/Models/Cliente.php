@@ -28,7 +28,7 @@ class Cliente extends Authenticatable
     ];
 
     public function reservas() {
-        return $this->belongsToMany('App\Models\Reserva');
+        return $this->hasMany('App\Models\Reserva');
     }
 
     public function reservasFeitas() {

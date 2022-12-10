@@ -20,11 +20,11 @@ export default{
         ]
     },
     methods: {
-        async getProdutos(){
-            const req = await fetch('http://localhost:8000/');
-            const data = await req.json;
-            console.log(data)
-        }
+        // async getProdutos(){
+        //     const req = await fetch('http://localhost:8000/');
+        //     const data = await req.json;
+        //     console.log(data)
+        // }
     },
     mounted () {
     this.getProdutos()

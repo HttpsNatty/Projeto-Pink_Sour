@@ -6,11 +6,7 @@
 
 <h2> Cardapio </h2>
 
-<CardapioView pesquisa="{{json_encode($pesquisa)}}"></CardapioView>
 
-<CardapioView produto="{{json_encode($produto)}}"></CardapioView>
-
-<CardapioView produtos="{{json_encode($produtos)}}"></CardapioView>
 
 <div id="pesquisadiv" class="pesquisadiv">
     <h1>Busque um aperitivo ou uma cerveja</h1>

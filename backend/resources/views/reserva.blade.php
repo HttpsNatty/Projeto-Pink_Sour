@@ -8,11 +8,15 @@
     <h1>Faça sua reserva</h1>
     <form name="reserva" method="POST">
     @csrf
+    <div>
+        <label for="id">Nome da Reserva</label>
+        <input type="text" name="id" placeholder="Ex.:Nome da empresa ou aniversariante">
+        
+    </div>
     <div id="data">
     <label for="data">Data de Reserva:</label>
         <input type="date" name="data" >
     </div>
-    <br>
     <div id="horas">
         <label for="title">Horas:</label>
         <select name="horas">
@@ -25,7 +29,6 @@
         </select>
         <br>
     </div>
-    <br>
     <div id="pessoas">
         <label for="title">Pessoas:</label>
         <select name="pessoas">
