@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('reservas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('nome');
             $table->dateTime('data');
             $table->boolean('horas');
             $table->boolean("pessoas");
@@ -30,7 +31,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('reservas', function (Blueprint $table) {
-            
+            Schema::dropIfExists('reserva');
         });
     }
 };

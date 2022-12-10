@@ -6,18 +6,18 @@
 <center>
 <div class="forms" id="reserva">
     <h1>Faça sua reserva</h1>
-    <form name="reserva" method="POST">
+    <!-- Formulário de Reserva -->
+    <form name="reserva" method="POST" action="{{route('agendar')}}">
     @csrf
-    <div>
-        <label for="id">Nome da Reserva</label>
-        <input type="text" name="id" placeholder="Ex.:Nome da empresa ou aniversariante">
-        
+    <div> <!-- Campo Nome -->
+        <label for="nome">Nome da Reserva:</label>
+        <input type="text" name="nome" placeholder="Ex.:Nome da empresa ou aniversariante">
     </div>
-    <div id="data">
+    <div id="data"> <!-- Campo Data -->
     <label for="data">Data de Reserva:</label>
         <input type="date" name="data" >
     </div>
-    <div id="horas">
+    <div id="horas"> <!-- Campo Horas -->
         <label for="title">Horas:</label>
         <select name="horas">
         <option value="17">17:00</option>
@@ -29,7 +29,7 @@
         </select>
         <br>
     </div>
-    <div id="pessoas">
+    <div id="pessoas"> <!-- Campo Pessoas -->
         <label for="title">Pessoas:</label>
         <select name="pessoas">
         <option value="1">1</option>
@@ -65,8 +65,10 @@
         </select>
     </div>
     <br>
-    <p><input class="btn btn-sour" type="submit" value="Reservar"/></p>
-    <p><input class="btn btn-sour" type="reset" value="Limpar"/></p>
+    <div> <!-- Botões -->
+        <p><input class="btn btn-sour" type="submit" value="Reservar"/></p>
+        <p><input class="btn btn-sour" type="reset" value="Limpar"/></p>
+    </div>
     </form>
 </div>
 </center>

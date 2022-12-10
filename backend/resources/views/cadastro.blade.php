@@ -118,19 +118,12 @@ function checaSeValido($n){
 ?>
 <center>
 
-@if($errors->any())
-    <div>
-        @foreach($errors0>all() as $error)
-        <span>{{ $error }} </span>
-        @endforeach
-    </div>
-@endif
-
 <div class="forms">
     <h1><img id="garrafa" width="160px" src="/img/black.png">Cadastre-se<img id="garrafa" width="160px" src="/img/black.png"></h1>
     <div class="row-coluna">
         <div class="coluna">
-            <form name="cadastro" method="POST" action="{{route('cadastrar')}}"> <!--Formulario de cadastro-->
+            <!--Formulario de Cadastro-->
+            <form name="cadastro" method="POST" action="{{route('cadastrar')}}"> 
             @csrf
             <div> <!--Campo Nome-->
                 <label> Digite seu nome:</label><br>
@@ -148,25 +141,18 @@ function checaSeValido($n){
                 <label for="senha">Senha:</label><br>
                 <input type="password" id="senha" name="senha" placeholder="Senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
                 <img id="olho" onclick=mostraSenha() width="25x" src="/img/close.svg"><br>
-                <div id="message">
-                    <h2>A senha deve conter:</h2>
-                    <p id="letter" class="invalid">Uma letra <b>minúscula</b></p>
-                    <p id="capital" class="invalid">Uma letra <b>maiúscula</b></p>
-                    <p id="number" class="invalid">Um <b>número</b></p>
-                    <p id="length" class="invalid">Ter no mínimo <b>6 caracteres</b></p>
-                </div>
                 <label>Confirmação senha:</label><br>
                 <input type="password" id="repsenha" name="repsenha" placeholder="Repetir senha">
             </div>
             <div> <!--Area dos termos -->
-                <input type="checkbox" id="termos" name="termos" value="ok" style=width:150px>
+                <input type="checkbox" id="termos" name="termos" value="ok" style=width:150px required>
                 <label>Ao se cadastar, concorda com a nossa 
                 <div class="popup" onclick="myFunction()">Política de Privacidade
-                    <span class="popuptext" id="myPopup">Coletamos os dados que você nos fornece ao registrar uma conta. Armazenamos alguns automaticamente (inclusive com tecnologias do tipo ‘cookies’, mas não compartilhamos seus dados de contato. 
+                    <span class="popuptext" id="myPopup">Coletamos os dados que você nos fornece ao registrar uma conta. Armazenamos alguns automaticamente (inclusive com tecnologias do tipo ‘cookies’), mas não compartilhamos seus dados de contato. 
                     </span>
                 </div>
                 e os <div class="popup" onclick="myFunction2()">Termos de uso
-                    <span class="popuptext" id="myPopup2">Concedemos a você uma licença limitada, não exclusiva, intransferível e revogável para usar e desfrutar dos Serviços da PinkSour.
+                    <span class="popuptext" id="myPopup2">Concedemos a você uma licença limitada, não exclusiva, intransferível e revogável para usar e desfrutar dos serviços da PinkSour.
                     </span>
                     </div>.
                 </label>
@@ -186,6 +172,13 @@ function checaSeValido($n){
                     Mensagem especial de aniversário<br>
                 </ul>
             </p>
+            <div id="message">
+                    <h2>A senha deve conter:</h2>
+                    <p id="letter" class="invalid">Uma letra <b>minúscula</b></p>
+                    <p id="capital" class="invalid">Uma letra <b>maiúscula</b></p>
+                    <p id="number" class="invalid">Um <b>número</b></p>
+                    <p id="length" class="invalid">Ter no mínimo <b>6 caracteres</b></p>
+                </div>
         </div>
     </div>
 

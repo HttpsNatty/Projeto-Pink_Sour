@@ -15,17 +15,19 @@ class ClienteController extends Controller
 {
     public function store(Request $request) {
         
-        $hoje = date('d/m/Y');
-        $data = date('d/m/Y');
+        $hoje = date('Y/m/d');
 
         $nome = $request->input('nome');
         $email = $request->input('email');
         $data = $request->input('data');
         $senha = $request->input('senha');
         $repsenha = $request->input('repsenha');
+        $termos = $request->input('termos');
         
         if($nome==null || $email==null || $data==null || $senha==null || $repsenha==null || $repsenha!=$senha){
             return redirect(route('cadastro'))->with('error', 'Cadastro incompleto');
+        }elseif($data > $hoje){
+            return redirect(route('cadastro'))->with('error', 'A data é futura, confira sua data de nascimento');
         }
 
         $cliente = new Cliente;
@@ -55,11 +57,13 @@ class ClienteController extends Controller
         $cliente = Cliente::query()
             ->where('email', $request->input('email'))
             ->first();
-        if($senha !== $request->input('senha')){
-            return redirect(route('entrar'))->with('error', 'Login incorreto');
-        }
+
         $cliente = Cliente::find(1);
 
+        if($request->senha != $cliente->senha){
+            return redirect(route('entrar'))->with('error', 'Senha incorreta');
+        }
+        
         Auth::login($cliente);
         return redirect(route('autenticado'))->with('msg', 'Login com sucesso!');
     }
