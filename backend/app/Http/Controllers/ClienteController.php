@@ -39,7 +39,7 @@ class ClienteController extends Controller
         $cliente->senha = $request->senha;
      
         $cliente->save();
-
+        
         return redirect(route('entrar'))->with('msg', 'Cadastro criado com sucesso!');
 
     }
@@ -66,10 +66,5 @@ class ClienteController extends Controller
         
         Auth::login($cliente);
         return redirect(route('autenticado'))->with('msg', 'Login com sucesso!');
-    }
-
-    public function autenticado()
-    {
-        return view('/dashboard');        
     }
 }

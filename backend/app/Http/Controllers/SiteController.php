@@ -22,9 +22,7 @@ class SiteController extends Controller
 
     public function autenticado() {
 
-        $reservas = request('reserva');
-
-        return view('dashboard',['reservas' => $reservas]);
+        return view('dashboard');
     }
 
     public function setCookie(Request $request){

@@ -46,12 +46,12 @@ Route::get('/entrar', [SiteController::class, 'entrar'])->name('entrar')->middle
 Route::get('/reserva', [ReservaController::class, 'create'])->name('reservar')->middleware('auth');
 Route::POST('/reserva', [ReservaController::class, 'store'])->name('agendar')->middleware('auth');
 
-Route::get('/dashboard/{id}', [ReservaController::class, 'show'])->name('reservas_show')->middleware('auth');
-Route::get('/dashboard', [ReservaController::class, 'dashboard'])->name('reserva_dashboard')->middleware('auth');
-Route::get('/dashboard/{id}', [ReservaController::class, 'edit'])->middleware('auth');
-Route::put('/dashboard/update/{id}', [ReservaController::class, 'update'])->middleware('auth');
-Route::delete('/dashboard/{id}', [ReservaController::class, 'destroy'])->middleware('auth');
-Route::get('/dashboard/', [SiteController::class, 'autenticado'])->name('autenticado')->middleware('auth');
+// Route::get('/dashboard/', [ReservaController::class, 'show'])->name('reservas_show')->middleware('auth');
+Route::get('/dashboard', [ReservaController::class, 'dashboard'])->name('painel')->middleware('auth');
+Route::get('/dashboard/{id}', [ReservaController::class, 'edit'])->name('editar')->middleware('auth');
+Route::put('/dashboard/update/{id}', [ReservaController::class, 'update'])->name('atualizar')->middleware('auth');
+Route::delete('/dashboard/{id}', [ReservaController::class, 'destroy'])->name('apagar')->middleware('auth');
+// Route::get('/dashboard/', [SiteController::class, 'autenticado'])->name('autenticado')->middleware('auth');
 
 //Cookies
 Route::get('/cookie/set',[SiteController::class, 'setCookie'])->name('setCookie');

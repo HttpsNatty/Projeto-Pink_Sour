@@ -14,12 +14,4 @@ class PromocoeController extends Controller
 
         return view('promo',['promocoes' => $promocoes]);
     }
-
-    public function show($id) {
-
-        $promocao = Promocao::all();     
-        
-        return view('promocao.show', ['promocao' => $promocao]);
-    }
-
 }

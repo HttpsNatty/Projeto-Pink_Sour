@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\DateTime;
+use App\Http\Requests;
 use App\Models\Reserva;
 use App\Models\Cliente;
 
 class ReservaController extends Controller
 {
+    public function index(){
+        return view('welcome');
+    }
+    
     public function create() {
         return view('reserva');
     }
@@ -48,46 +53,31 @@ class ReservaController extends Controller
         $reserva->horas = $request->horas;
         $reserva->pessoas = $request->pessoas;
         $reserva->cliente_id = $cliente->id;
-
+       
         // Salvando a reserva no banco
         $reserva->save();
 
         // Feedback de sucesso
-        return redirect(route('autenticado'))->with('msg', 'Reserva criada com sucesso!');
+        return redirect(route('painel'))->with('msg', 'Reserva criada com sucesso!');
     }
 
     public function show($id) {
 
-        // $reserva = Reserva::findOrFail($id);
+        $reservas = Reserva::findOrFail($id);
 
-        // $cliente = auth()->user();
-        // $doCliente = false;
+        $reservaDono = Cliente::whre('id', $reserva->cliente_id)->first()->toArray();
 
-        // $reservasFeitas = $cliente->reservasFeitas;
-
-        // if($cliente) {
-
-        //     $clienteReservas = $cliente->reservasFeitas->toArray();
-        //     $doCliente = false;
-
-        //     foreach($clienteReservas as $clienteReserva) {
-        //         if($clienteReserva['id'] == $id) {
-        //             $doCliente = true;
-        //         }
-        //     }
-        // }
-        // $donoReserva = Cliente::where('id', $reserva->cliente_id)->first()->toArray();
+        return redirect(route('reservas_show'), ['reservas' => $reservas]);
         
-        return view(route('reserva_dashboard'));
     }
 
     public function dashboard() {
 
         $cliente = auth()->user();
 
-        $reservas = $cliente->reservas->toArray();
+        $reservas = $cliente->reservas;
 
-        return view(route('reservas_dashboard'));
+        return view('dashboard', ['reservas' => $reservas]);
     }
 
     public function destroy($id){

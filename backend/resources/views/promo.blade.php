@@ -12,8 +12,7 @@
             <div id="card-body">
                 <div>
                     <h2>{{ $promocoe->nome }}</h2> <br>
-                    <div>{{ $promocoe->descricao }}</div>  
-                    
+                    <div>{{ $promocoe->descricao }}</div>
                 </div>           
             </div>
         </div>

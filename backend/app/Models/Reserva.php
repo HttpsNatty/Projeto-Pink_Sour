@@ -9,19 +9,21 @@ class Reserva extends Model
 {
     use HasFactory;
 
-    protected $casts = [
-        'items' => 'array'
-    ];
+    protected $fillable = ['nome', 'data', 'horas', 'pessoas', 'cliente_id'];
 
-    protected $guarded = [];
+    // protected $casts = [
+    //     'items' => 'array'
+    // ];
 
-    protected $dates = ['date'];
+    // protected $guarded = [];
+
+    // protected $dates = ['date'];
 
     public function cliente() {
         return $this->belongsTo('App\Models\Cliente');
     }
 
-    public function clientes() {
-        return $this->belongsToMany('App\Models\Cliente');
-    }
+    // public function clientes() {
+    //     return $this->belongsToMany('App\Models\Cliente');
+    // }
 }

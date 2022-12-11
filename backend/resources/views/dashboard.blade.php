@@ -19,8 +19,39 @@
     <h2>Minhas reservas</h2>
     <br>
     <div>
-        
-        nada
+    @if(count($reservas) > 0)
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Número</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Dia</th>
+                    <th scope="col">Horas</th>
+                    <th scope="col">Pessoas</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($reservas as $reserva)
+                    <tr>
+                        <td scropt="row"><a href="/dashboard/{{ $reserva->id }}"></a>{{ $loop->index + 1 }}</td>
+                        <td>{{ $reserva->nome }}</td>
+                        <td>{{ $reserva->data }}</td>
+                        <td>{{ $reserva->horas }}</td>
+                        <td>{{ $reserva->pessoas }}</td>
+                        <td><a href="#">Editar</a>
+                        <form action="/dashboard/{{ $reserva->id }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash-outline"></ion-icon> Deletar</button>
+                        </form>
+                    </tr>
+                @endforeach    
+            </tbody>
+        </table>
+    @else
+        <p>Você ainda não fez uma reserva! <a href="/reserva">Faça sua reserva</a></p>
+    @endif
+    </div>
 </div>
 </center>
 @endsection

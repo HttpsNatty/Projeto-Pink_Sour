@@ -397,6 +397,7 @@ select:focus{
 }
 .btn-sour:hover{
     background: #C4B4F4;
+    text-decoration: none;
 }
 .btn-white{
     width: 50%;
