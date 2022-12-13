@@ -20,6 +20,9 @@ class ReservaController extends Controller
 
     public function store(Request $request) {
         
+        // Nova Reserva
+        $reserva = new Reserva;
+
         // Variaveis para completar a reserva
         $nome = $request->input('nome');
         $data = $request->input('data');
@@ -31,7 +34,7 @@ class ReservaController extends Controller
         
         // Variavel com a data de hoje para comparação
         $hoje = date('Y/m/d');
-        
+
         // Confere se a data foi preenchida
         if($data==null){
             return redirect(route('reservar'))->with('error', 'Reserva incompleta, escolha uma data');
@@ -39,9 +42,6 @@ class ReservaController extends Controller
         }elseif($data < $hoje){
             return redirect(route('reservar'))->with('error', 'A data já passou, escolha uma data futura');
         }
-              
-        // Nova Reserva
-        $reserva = new Reserva;
 
         // Se o cliente não preencher o nome, pegamos o nome do cliente logado
         if($nome==null){
@@ -53,7 +53,7 @@ class ReservaController extends Controller
         $reserva->horas = $request->horas;
         $reserva->pessoas = $request->pessoas;
         $reserva->cliente_id = $cliente->id;
-       
+
         // Salvando a reserva no banco
         $reserva->save();
 
@@ -61,20 +61,12 @@ class ReservaController extends Controller
         return redirect(route('painel'))->with('msg', 'Reserva criada com sucesso!');
     }
 
-    public function show($id) {
-
-        $reservas = Reserva::findOrFail($id);
-
-        $reservaDono = Cliente::whre('id', $reserva->cliente_id)->first()->toArray();
-
-        return redirect(route('reservas_show'), ['reservas' => $reservas]);
-        
-    }
-
     public function dashboard() {
 
+        // Cliente precisa estar autenticado
         $cliente = auth()->user();
 
+        // As reservas tem que ser no cliente
         $reservas = $cliente->reservas;
 
         return view('dashboard', ['reservas' => $reservas]);
@@ -82,25 +74,51 @@ class ReservaController extends Controller
 
     public function destroy($id){
 
+        // Procura a reserva pelo id
         Reserva::findOrFail($id)->delete();
 
+        // Feedback de exclusão com sucesso
         return redirect('/dashboard')->with('msg', 'Reserva excluída com sucesso!');
     }
 
     public function edit($id) {
 
+        // Cliente precisa estar autenticado
+        $cliente = auth()->user();
+
+        // Procura o id da reserva
         $reserva = Reserva::findOrFail($id);
 
-        return view('reservas.edit', ['reserva' => $reserva]);
+        // Se não encontrar leva para o painel
+        if($cliente->id != $reserva->cliente_id) {
+            return redirect('/dashboard');
+        }
+
+        // Direciona para edição
+        return view('reserva/edit', ['reserva' => $reserva]);
 
     }
 
     public function update(Request $request) {
 
-        $data = $request->all();
+        // Puxa todos os dados da reserva em forma de array
+        $dados = $request->all();
 
-        Reserva::findOrFail($request->id)->update($data);
+        // Variavel com a data de hoje para comparação
+        $hoje = date('Y/m/d');
 
-        return redirect('/dashboard')->with('msg', 'A reserva foi editada com sucesso!');
+         // Confere se a data foi preenchida
+         if($request->data==null){
+            return redirect(url('reserva/edit/' . $request->id ))->with('error', 'Reserva incompleta, escolha uma data');
+        // Confere se a data preenchida é anterior ao dia de hoje
+        }elseif($request->data < $hoje){
+            return redirect(url('/reserva/edit/' . $request->id ))->with('error', 'A data já passou, escolha uma data futura');
+        }
+
+        // Procura o id da reserva e atualiza os dados
+        Reserva::findOrFail($request->id)->update($dados);
+    
+        // Feedback de sucesso
+        return redirect(route('painel'))->with('msg', 'Reserva editada com sucesso!');
     }
 }

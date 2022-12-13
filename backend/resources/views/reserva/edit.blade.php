@@ -1,20 +1,24 @@
-@extends('layouts.main')
+@extends('layout.main')
 
 @section('title', 'Editando: Reserva' . $reserva->id)
 
 @section('content')
 
-<div id="event-create-container" class="col-md-6 offset-md-3">
+<div id="event-create-container" class="forms"> <!-- Formulário de edição -->
   <h1>Editando: {{ $reserva->nome }}</h1>
-  <form action="/reserva/atualizar/{{ $reserva->id }}" method="POST" enctype="multipart/form-data">
+  <form action="/reserva/update/{{ $reserva->id }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
-    <div class="form-group">
-      <label for="date">Data da Reserva:</label>
-      <input type="date" class="form-control" id="date" name="date" value="{{ $reserva->data->format('Y-m-d') }}">
+    <div class="form-group"> <!-- Campo Nome -->
+        <label for="nome">Nome da Reserva:</label>
+        <input type="text" name="nome" value="{{ $reserva->nome }}">
     </div>
-    <div class="form-group">
-      <label for="title">:Horas da Reserva:</label>
+    <div class="form-group"> <!-- Campo Data -->
+      <label for="data">Data da Reserva:</label>
+      <input type="date" class="form-control" name="data" value="{{ date('Y/m/d', strtotime($reserva->data)) }}">
+    </div>
+    <div class="form-group"> <!-- Campo Horas -->
+      <label for="horas">Horas da Reserva:</label>
       <select name="horas">
         <option value="17"{{ $reserva->horas == 17 ? "selected='selected'" : "" }}>17:00</option>
         <option value="18"{{ $reserva->horas == 18 ? "selected='selected'" : "" }}>18:00</option>
@@ -24,10 +28,10 @@
         <option value="22"{{ $reserva->horas == 22 ? "selected='selected'" : "" }}>22:00</option>
         </select>
     </div>
-    <div class="form-group">
-      <label for="title">Pessoas para a Reserva:</label>
+    <div class="form-group"> <!-- Campo Pessoas -->
+      <label for="pessoas">Pessoas para a Reserva:</label>
       <select name="pessoas">
-        <option value="1" {{ $reserva->pessoas == 1 ? "selected='selected'" : "" }}>1</option>
+        <option value="1"{{ $reserva->pessoas == 1 ? "selected='selected'" : "" }}>1</option>
         <option value="2"{{ $reserva->pessoas == 2 ? "selected='selected'" : "" }}>2</option>
         <option value="3"{{ $reserva->pessoas == 3 ? "selected='selected'" : "" }}>3</option>
         <option value="4"{{ $reserva->pessoas == 4 ? "selected='selected'" : "" }}>4</option>
@@ -58,6 +62,9 @@
         <option value="29"{{ $reserva->pessoas == 29 ? "selected='selected'" : "" }}>29</option>
         <option value="30"{{ $reserva->pessoas == 30 ? "selected='selected'" : "" }}>30</option> 
         </select>
+    </div>
+    <div> <!-- Botão -->
+      <input type="submit" class="btn btn-sour" value="Editar Reserva">
     </div>
   </form>  
 </div>

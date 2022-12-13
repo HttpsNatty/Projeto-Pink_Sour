@@ -28,17 +28,18 @@
                     <th scope="col">Dia</th>
                     <th scope="col">Horas</th>
                     <th scope="col">Pessoas</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($reservas as $reserva)
                     <tr>
-                        <td scropt="row"><a href="/dashboard/{{ $reserva->id }}"></a>{{ $loop->index + 1 }}</td>
+                        <td scropt="row">{{ $loop->index + 1 }}</td>
                         <td>{{ $reserva->nome }}</td>
-                        <td>{{ $reserva->data }}</td>
+                        <td>{{ date('d/m/Y', strtotime($reserva->data)) }}</td>
                         <td>{{ $reserva->horas }}</td>
                         <td>{{ $reserva->pessoas }}</td>
-                        <td><a href="#">Editar</a>
+                        <td><a href="/reserva/edit/{{ $reserva->id }}">Editar</a>
                         <form action="/dashboard/{{ $reserva->id }}" method="POST">
                             @csrf
                             @method('DELETE')
