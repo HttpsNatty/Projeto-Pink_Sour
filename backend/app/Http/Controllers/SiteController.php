@@ -25,15 +25,15 @@ class SiteController extends Controller
         return view('dashboard');
     }
 
-    public function setCookie(Request $request){
-        $tempo = 86400*30;
-        $response = new Response('Set Cookie');
-        $response->withCookie(cookie('$cliente->nome', 'MyValue', $tempo));
-        return $response;
-    }
+    // public function setCookie(Request $request){
+    //     $tempo = 86400*30;
+    //     $response = new Response('Set Cookie');
+    //     $response->withCookie(cookie('$cliente->nome', 'MyValue', $tempo));
+    //     return $response;
+    // }
 
-    public function getCookie(Request $request){
-        $value = $request->cookie('nome');
-        echo $value;
-    }
+    // public function getCookie(Request $request){
+    //     $value = $request->cookie('nome');
+    //     echo $value;
+    // }
 }

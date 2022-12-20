@@ -4,6 +4,12 @@
 
 @section('content')
 <center>
+
+<!-- <lista.vue
+    reservas="{{json_encode($reservas)}}">
+</lista.vue> -->
+
+{{print $reservas}}
 <div class="home do painel">
     <h2>Bem-vindo ao Clube!</h2>
     <br>

@@ -11,7 +11,11 @@ use App\Models\Cliente;
 class ReservaController extends Controller
 {
     public function index(){
-        return view('welcome');
+        // $reservas = Reserva::all();
+
+        $reservas = "teste";
+        
+        return ($reservas);
     }
     
     public function create() {

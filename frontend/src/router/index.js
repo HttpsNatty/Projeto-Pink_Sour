@@ -8,7 +8,7 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/cardapioo',
+    path: '/cardapio',
     name: 'Cardapio',
     component: () => import(/* webpackChunkName: "cardapio" */ '../views/CardapioView.vue')
   },
@@ -17,15 +17,20 @@ const routes = [
     name: 'Promocoes',
     component: () => import(/* webpackChunkName: "promocoes" */ '../views/PromocoesView.vue')
   },
-  // {
-  //   path: '/cadastrar',
-  //   name: 'Cadastrar',
-  //   component: () => import(/* webpackChunkName: "cadastrar" */ '../views/cadastroView.vue')
-  // },
+  {
+    path: '/cadastro',
+    name: 'Cadastro',
+    component: () => import(/* webpackChunkName: "cadastrar" */ '../views/CadastroView.vue')
+  },
   {
     path: '/entrar',
     name: 'Entrar',
     component: () => import(/* webpackChunkName: "login" */ '../views/LoginView.vue')
+  },
+  {
+    path: '/admin/painel',
+    name: 'AdminView',
+    component: () => import(/* webpackChunkName: "Painel Administrativo" */ '../views/AdminView.vue')
   }
 ]
 

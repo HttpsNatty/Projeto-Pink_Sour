@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Validator;
 
 use Auth;
 
-use Hash;
-
 use App\Models\Cliente;
 
 class ClienteController extends Controller

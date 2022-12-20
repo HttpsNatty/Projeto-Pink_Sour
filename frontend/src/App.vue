@@ -121,4 +121,14 @@ input[type='checkbox']{
     vertical-align: middle;
     color: #D34C59;
 }
+.forms {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px 20px; 
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0px 0px 20px #bebebe;
+}
 </style>

@@ -1,8 +1,15 @@
 <template>
     <div>
-        <input type="text" name="username" id="username-input" placeholder="Digite o nome do usuário" v-model="formData.name">
-<input type="email" name="email" id="email-input" placeholder="Digite o email do usuário" v-model="formData.email">
-<form v-on:submit.prevent="addUser(formData)">
+        <div v-if="error.validate" class="error"><h2>{{error.message}}</h2></div>
+        <h1><img id="garrafa" width="160px" src="/img/black.png">Cadastre-se<img id="garrafa" width="160px" src="/img/black.png"></h1>
+        <form>
+        <input type="text" name="nome" id="nome" placeholder="Digite o nome do usuário" v-model="formData.name">
+        <input type="email" name="email" id="email" placeholder="Digite o email do usuário" v-model="formData.email">
+        <input type="date" name="datanasc" id="data" v-model="formData.name">
+        <input type="password" name="senha" id="senha" placeholder="Senha" v-model="formData.senha">
+        <input type="password" name="repsenha" id="repsenha" placeholder="Repetir senha">
+        <button type="button" @click="registerUser">&lt; Cadastrar /&gt;</button>
+    </form>
     </div>
 </template>
 
@@ -13,7 +20,7 @@ const api = axios.create({
  baseURL: "http://localhost:8080/api/",
 });
 export default {
-    name: 'EntrarTela',
+    name: 'Cadastro',
     
     data(){
         return {
@@ -24,32 +31,17 @@ export default {
             }
         }
     },
-    
-   async created() {
-
-	let results = await axios.get('http://localhost:8000/api/clientes');
-
-	this.clientes = results.data;
-
-},
-async addUser(data) {
-
-	if (!data.name) {
-		alert('Informe o nome');
-	} else if (!data.email) {
-		alert('Informe o email');
-	} else {
-
-		let results = await axios.post(`${server}/clientes`, data);
-
-		this.clientes.push({
-			id: results.data.id,
-			name: results.data.name,
-			email: results.data.email
-		});
-
-	}
-
-}
+    methods: {
+        registerUser() {
+           axios.post(`${process.env.VUE_APP_URL}api/register`,this.formData).then((response)=>{
+            this.error.validate = false
+            window.location.href = '/login'
+           })
+           .catch((error)=>{
+            this.error.validate = true
+            this.error.message = error.response.data.message
+           })
+        }
+    }
 }
 </script>
