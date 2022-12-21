@@ -34,7 +34,7 @@ class ReservaController extends Controller
         $pessoas = $request->only('pessoas');
         
         // Cliente precisa estar autenticado
-        $cliente = auth()->user();   
+        // $cliente = auth()->user();   
         
         // Variavel com a data de hoje para comparação
         $hoje = date('Y/m/d');
@@ -68,7 +68,7 @@ class ReservaController extends Controller
     public function dashboard() {
 
         // Cliente precisa estar autenticado
-        $cliente = auth()->user();
+        // $cliente = auth()->user();
 
         // As reservas tem que ser no cliente
         $reservas = $cliente->reservas;
@@ -88,7 +88,7 @@ class ReservaController extends Controller
     public function edit($id) {
 
         // Cliente precisa estar autenticado
-        $cliente = auth()->user();
+        // $cliente = auth()->user();
 
         // Procura o id da reserva
         $reserva = Reserva::findOrFail($id);
@@ -106,23 +106,23 @@ class ReservaController extends Controller
     public function update(Request $request) {
 
         // Puxa todos os dados da reserva em forma de array
-        $dados = $request->all();
+        // $dados = $request->all();
 
-        // Variavel com a data de hoje para comparação
-        $hoje = date('Y/m/d');
+        // // Variavel com a data de hoje para comparação
+        // $hoje = date('Y/m/d');
 
-         // Confere se a data foi preenchida
-         if($request->data==null){
-            return redirect(url('reserva/edit/' . $request->id ))->with('error', 'Reserva incompleta, escolha uma data');
-        // Confere se a data preenchida é anterior ao dia de hoje
-        }elseif($request->data < $hoje){
-            return redirect(url('/reserva/edit/' . $request->id ))->with('error', 'A data já passou, escolha uma data futura');
-        }
+        //  // Confere se a data foi preenchida
+        //  if($request->data==null){
+        //     return redirect(url('reserva/edit/' . $request->id ))->with('error', 'Reserva incompleta, escolha uma data');
+        // // Confere se a data preenchida é anterior ao dia de hoje
+        // }elseif($request->data < $hoje){
+        //     return redirect(url('/reserva/edit/' . $request->id ))->with('error', 'A data já passou, escolha uma data futura');
+        // }
 
-        // Procura o id da reserva e atualiza os dados
-        Reserva::findOrFail($request->id)->update($dados);
+        // // Procura o id da reserva e atualiza os dados
+        // Reserva::findOrFail($request->id)->update($dados);
     
-        // Feedback de sucesso
-        return redirect(route('painel'))->with('msg', 'Reserva editada com sucesso!');
+        // // Feedback de sucesso
+        // return redirect(route('painel'))->with('msg', 'Reserva editada com sucesso!');
     }
 }

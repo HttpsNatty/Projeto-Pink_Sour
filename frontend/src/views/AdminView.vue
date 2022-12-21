@@ -26,7 +26,7 @@ export default {
 
     methods: {
         getReserva() {
-            axios.get(`${process.env.VUE_APP_URL}teste`,this.teste).then((response)=>{
+            axios.get(`${process.env.VUE_APP_URL}teste`).then((response)=>{
                 console.log(response.data);
             }).catch((error)=>{
                console.log(error);
