@@ -1,47 +1,94 @@
 <template>
     <div>
-        <div v-if="error.validate" class="error"><h2>{{error.message}}</h2></div>
-        <h1><img id="garrafa" width="160px" src="/img/black.png">Cadastre-se<img id="garrafa" width="160px" src="/img/black.png"></h1>
-        <form>
-        <input type="text" name="nome" id="nome" placeholder="Digite o nome do usuário" v-model="formData.name">
-        <input type="email" name="email" id="email" placeholder="Digite o email do usuário" v-model="formData.email">
-        <input type="date" name="datanasc" id="data" v-model="formData.name">
-        <input type="password" name="senha" id="senha" placeholder="Senha" v-model="formData.senha">
-        <input type="password" name="repsenha" id="repsenha" placeholder="Repetir senha">
-        <button type="button" @click="registerUser">&lt; Cadastrar /&gt;</button>
+        <div class="forms">
+            <h1><img id="garrafa" src="/img/black.png">Cadastre-se<img id="garrafa" src="/img/black.png"></h1>
+            <div class="row-coluna">
+                <div class="coluna">
+                <!--Formulario de Cadastro-->
+                <form>
+            <div> <!--Campo Nome-->
+                <label> Digite seu nome:</label>
+                <br>
+                <input type="text" name="nome" id="nome" placeholder="Nome" v-model="formData.nome">
+            </div>
+            <div> <!--Campo Email-->
+                <label>Digite seu e-mail:</label>
+                <br>
+                <input type="email" name="email" id="email" placeholder="Email" v-model="formData.email">
+            </div>
+            <div> <!--Campo Data-->
+                <label>Digite a data do seu aniversário:</label>
+                <br>
+                <input type="date" name="data" id="data" v-model="formData.data">
+            </div>
+            <div class=".container-senha"> <!--Campo Senha-->
+            <label for="senha">Senha:</label>
+            <br>
+            <input type="password" name="senha" id="senha" placeholder="Senha" v-model="formData.senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+            <img id="olho" @click=mostraSenha src="/img/close.svg"><br>
+                <label>Confirmação senha:</label><br>
+                <input type="password" id="repsenha" name="repsenha" placeholder="Repetir senha">
+            </div>
+            <div> <!--Area dos termos -->
+        </div>
+        <button type="button" class="btn btn-sour" @click="cadastroCliente">Cadastrar</button>
     </form>
+            </div></div>
+
+            <div><p>Já possui cadastro? <a href="/entrar">Entre</a></p>
     </div>
+    </div></div>
 </template>
 
 
 <script>
+const olho = document.getElementById("olho")
+let senha = document.getElementById("senha")
+let repsenha = document.getElementById("repsenha")
 import axios from "axios";
-const api = axios.create({
- baseURL: "http://localhost:8080/api/",
-});
+
 export default {
     name: 'Cadastro',
     
     data(){
         return {
             formData:{},
-            error: {
-                validate:false,
-                message:'',
-            }
+            message:''
         }
     },
     methods: {
-        registerUser() {
-           axios.post(`${process.env.VUE_APP_URL}api/register`,this.formData).then((response)=>{
-            this.error.validate = false
-            window.location.href = '/login'
+        mostraSenha(){
+            const olho = document.getElementById("olho")
+            let senha = document.getElementById("senha")
+            let repsenha = document.getElementById("repsenha")
+        if(senha.type=="password"){
+            senha.type="text";
+            repsenha.type="text";
+            olho.setAttribute("src", "/img/open.svg")
+        }else{
+            senha.type="password";
+            repsenha.type="password";
+            olho.setAttribute("src", "/img/close.svg")
+        }},
+      
+
+        cadastroCliente() {       
+           axios.post(`${process.env.VUE_APP_URL}api/cadastro`,this.formData).then((response)=>{
+            localStorage.setItem('token',response.data.token)
+            window.location.href = '/entrar'
            })
            .catch((error)=>{
-            this.error.validate = true
-            this.error.message = error.response.data.message
+            console.log(error);
            })
         }
     }
 }
 </script>
+<style>
+#olho {
+    width: 25px;
+}
+#garrafa {
+    width: 160px;
+}
+</style>

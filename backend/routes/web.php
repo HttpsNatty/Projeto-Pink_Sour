@@ -29,17 +29,16 @@ use App\Http\Controllers\TesteController;
 Route::get('/', function () {return view('Home');});
 
 //Cardapio
-Route::get('/cardapio', [ProdutoController::class, 'index'])->name('menu');
+Route::get('/cardapio', [ProdutoController::class, 'search'])->name('menu');
 
 //Promoções
 Route::get('/promocoes', [PromocoeController::class, 'index'])->name('promocoes');
-Route::get('/promocoes/{id}', [PromocoeController::class, 'show'])->name('promocoes.show');
 
 //Cadastro
-Route::get('/cadastro', [SiteController::class,'cadastro'])->name('cadastro')->middleware('guest');
-Route::POST('/cadastro', [ClienteController::class, 'store'])->name('cadastrar')->middleware('guest');
+// Route::get('/cadastro', [SiteController::class,'cadastro'])->name('cadastro')->middleware('guest');
+// Route::POST('/cadastro', [ClienteController::class, 'store'])->name('cadastrar')->middleware('guest');
 
-//Login
+// //Login
 Route::POST('/entrar', [ClienteController::class, 'entrar'])->middleware('guest');
 Route::get('/entrar', [SiteController::class, 'entrar'])->name('entrar')->middleware('guest');
 

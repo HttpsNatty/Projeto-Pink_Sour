@@ -25,12 +25,12 @@ const routes = [
   {
     path: '/entrar',
     name: 'Entrar',
-    component: () => import(/* webpackChunkName: "login" */ '../views/LoginView.vue')
+    component: () => import(/* webpackChunkName: "login" */ '../views/EntrarView.vue')
   },
   {
-    path: '/admin/painel',
-    name: 'AdminView',
-    component: () => import(/* webpackChunkName: "Painel Administrativo" */ '../views/AdminView.vue')
+    path: '/dashboard',
+    name: 'DashboardView',
+    component: () => import(/* webpackChunkName: "Painel Administrativo" */ '../views/DashboardView.vue')
   }
 ]
 

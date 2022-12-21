@@ -20,8 +20,6 @@ export default {
     Carrossel,
     Comemorar,
     Contato
-
   }
-  
 }
 </script>

@@ -6,7 +6,7 @@
 <center>
 <div>
     <h1>Confira nossas promoções</h1>
-<div id="menuitens" class="row" >
+    <div id="menuitens" class="row" >
         @foreach($promocoes as $promocoe)
         <div id="menucard" class="container">
             <div id="card-body">

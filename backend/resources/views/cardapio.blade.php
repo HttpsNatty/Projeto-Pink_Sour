@@ -26,14 +26,14 @@
         <div id="menucard" class="container">
             <img src="/img/Cardapio/{{ $produto->nome }}.png" alt="{{ $produto->nome }}" class="imagemCard">
             <div id="card-body" class="overlay">
-                <a href="/produto/{{ $produto->id }}" class="btn btn-primary">
-                <div class="text">{{ $produto->nome }}</div>           
+                <div class="text">{{ $produto->descricao }}</div>           
             </div>
+            {{ $produto->nome}}
         </div>
     </div>
     @endforeach
     @if(count($produtos) == 0 && $pesquisa)
-            <h4>Não foi possível encontrar nenhum evento com {{ $pesquisa }}! <a href="/"><h4>Ver o menu completo</h4></a></h4>
+            <h4>Não foi possível encontrar nenhum evento com {{ $pesquisa }}! <a href="/cardapio"><h4>Ver o menu completo</h4></a></h4>
         @elseif(count($produtos) == 0)
             <p>Não há itens disponíveis</p>
         @endif

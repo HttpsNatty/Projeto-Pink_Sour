@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
-use Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Cliente;
 
 class ClienteController extends Controller
 {
-    public function store(Request $request) {
+    public function register(Request $request) {
         
         $hoje = date('Y/m/d');
 
@@ -30,15 +32,17 @@ class ClienteController extends Controller
 
         $cliente = new Cliente;
 
-        $cliente->id = $request->id;
+        
         $cliente->nome = $request->nome;
         $cliente->email = $request->email;
         $cliente->data = $request->data;
         $cliente->senha = $request->senha;
      
         $cliente->save();
+      
         
-        return redirect(route('entrar'))->with('msg', 'Cadastro criado com sucesso!');
+
+        // return redirect(route('entrar'))->with('msg', 'Cadastro criado com sucesso!');
 
     }
 
@@ -63,6 +67,6 @@ class ClienteController extends Controller
         }
         
         Auth::login($cliente);
-        return redirect(route('autenticado'))->with('msg', 'Login com sucesso!');
+        return redirect(route('painel'))->with('msg', 'Login com sucesso!');
     }
 }

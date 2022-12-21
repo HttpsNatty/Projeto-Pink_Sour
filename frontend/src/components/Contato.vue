@@ -6,7 +6,7 @@
         <div>
             <p>Venha nos conhecer!</p>
             <ul>
-            <li v-for="(dados, index) in dados_Contato" v-bind:key="index">{{ dados}}</li>
+            <li v-for="(dados, index) in dados_Contato" v-bind:key="index">{{ dados }}</li>
             </ul>
         <ul>
             <li><img src="/img/facew.png">Pinksour </li>

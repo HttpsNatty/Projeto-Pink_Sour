@@ -131,4 +131,15 @@ input[type='checkbox']{
     border-radius: 30px;
     box-shadow: 0px 0px 20px #bebebe;
 }
+body{
+    min-height: 100vh;
+    padding-bottom: 100px;
+    position: relative;
+    text-align: center;
+}
+.row {
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
+}
 </style>

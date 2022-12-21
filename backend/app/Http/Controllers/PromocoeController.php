@@ -8,12 +8,11 @@ use App\Models\Promocoe;
 
 class PromocoeController extends Controller
 {
+    // Função para ver as promoções
     public function index() {
 
         $promocoes = Promocoe::all();
         
-        return response()->json([
-            'promocoes' => json_encode($promocoes),
-        ]);
+        return ($promocoes);
     }
 }

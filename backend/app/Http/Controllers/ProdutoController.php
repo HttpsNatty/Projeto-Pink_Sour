@@ -8,7 +8,7 @@ use App\Models\Produto;
 
 class ProdutoController extends Controller
 {
-    public function index() {
+    public function search() {
 
         $pesquisa = request('pesquisa');
 
@@ -23,15 +23,14 @@ class ProdutoController extends Controller
         }        
     
         return view('cardapio',['produtos' => $produtos, 'pesquisa' => $pesquisa]);
-
     }
 
-    // public function index(){
+    public function index(){
 
-    //     $produtos = Produto::all();
+        $produtos = Produto::all();
 
-    //     return view('cardapio',['produtos' => $produtos]);
-    // }
+        return ($produtos);
+    }
 
     // public function create()
     // {

@@ -16,7 +16,7 @@ export default {
     background-color: #353E48;
     color: #FFF;
     padding: 30px;
-    /* position: absolute; */
+    position: absolute;
     align-items: center;
     justify-content: center;
     bottom: 0;
