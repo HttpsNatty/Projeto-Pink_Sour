@@ -11,7 +11,9 @@ class PromocoeController extends Controller
     public function index() {
 
         $promocoes = Promocoe::all();
-
-        return view('promo',['promocoes' => $promocoes]);
+        
+        return response()->json([
+            'promocoes' => json_encode($promocoes),
+        ]);
     }
 }

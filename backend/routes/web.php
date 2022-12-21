@@ -55,6 +55,7 @@ Route::get('/reserva/edit/{id}', [ReservaController::class, 'edit'])->name('edit
 Route::put('/reserva/update/{id}', [ReservaController::class, 'update'])->name('atualizar')->middleware('auth');
 Route::delete('/dashboard/{id}', [ReservaController::class, 'destroy'])->name('apagar')->middleware('auth');
 
+
 //Cookies
 // Route::get('/cookie/set',[SiteController::class, 'setCookie'])->name('setCookie');
 // Route::get('/cookie/get',[SiteController::class, 'getCookie'])->name('getCookie');

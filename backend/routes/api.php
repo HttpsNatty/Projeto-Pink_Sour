@@ -44,15 +44,25 @@ Route::get('/entrar', [SiteController::class, 'entrar'])->name('entrar')->middle
 
 //Rotas de Logados
 //Reserva
-Route::get('/teste', [TesteController::class, 'index']);
+
 // Route::get('/reserva', [ReservaController::class, 'create'])->name('reservar')->middleware('auth');
 // Route::POST('/reserva', [ReservaController::class, 'store'])->name('agendar')->middleware('auth');
 
 // // Route::get('/dashboard/', [ReservaController::class, 'show'])->name('reservas_show')->middleware('auth');
-// Route::get('/dashboard', [ReservaController::class, 'dashboard'])->name('painel')->middleware('auth');
+
 // Route::get('/reserva/edit/{id}', [ReservaController::class, 'edit'])->name('editar')->middleware('auth');
 // Route::put('/reserva/update/{id}', [ReservaController::class, 'update'])->name('atualizar')->middleware('auth');
 // Route::delete('/dashboard/{id}', [ReservaController::class, 'destroy'])->name('apagar')->middleware('auth');
+
+Route::middleware(['cors'])->group(function () {
+    Route::get('/teste', [TesteController::class, 'index']);
+    Route::get('/promocoes', [PromocoeController::class, 'index']);
+});
+
+Route::middleware(['cors', 'auth'])->group(function () {
+    // Route::get('/dashboard', [ReservaController::class, 'dashboard'])->name('painel');
+});
+
 
 // Route::get('/dashboard', [SiteController::class, 'autenticado'])->name('autenticado')->middleware('auth');
 // Route::get('/cookie/set',[SiteController::class, 'setCookie'])->name('setCookie');
