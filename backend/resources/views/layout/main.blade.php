@@ -15,11 +15,10 @@
 
     <!-- CSS da aplicação -->
     <link rel="stylesheet" href="/css/styles.css">
-    <script src="/js/scripts.js"></script>
     
     <!-- Vue.js -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="src/app.js" defer></script>
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="src/app.js" defer></script> -->
 
     <?php
     date_default_timezone_set('America/Sao_Paulo');

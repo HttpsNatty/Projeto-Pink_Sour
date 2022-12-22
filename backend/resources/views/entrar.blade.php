@@ -4,11 +4,6 @@
 
 @section('content')
 
-@error('email')
-{{ $message }}
-@enderror
-
-<center>
 <div class="forms">
     <h1><img id="garrafa" width="260px" src="/img/pinks.png">Login<img id="garrafa" width="260px" src="/img/pinks.png"></h1>
     <br>
@@ -33,19 +28,11 @@
             <input class="btn btn-sour" type="submit" value="Login"/></p>
         </div>
         <div>
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Esqueceu a senha?') }}
-                    </a>
-                @endif
-                </div>
             <p> Ainda não possui cadastro? <a href= "/cadastro">Cadastre-se</a><br>
             <a href= "/"> Voltar para página inicial</a>
         </div>
     </form>
 </div>
-</center>
 
 <?php  
 

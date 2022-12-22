@@ -3,7 +3,6 @@
 @section('title', 'Pink Sour | Promoções')
 
 @section('content')
-<center>
 <div>
     <h1>Confira nossas promoções</h1>
     <div id="menuitens" class="row" >
@@ -18,5 +17,4 @@
         </div>
     @endforeach
 </div>
-</center>
 @endsection

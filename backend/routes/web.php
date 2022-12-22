@@ -10,9 +10,7 @@ use App\Http\Controllers\ReservaController;
 
 use App\Http\Controllers\ClienteController;
 
-use App\Http\Controllers\SiteController;
-
-use App\Http\Controllers\TesteController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,16 +33,15 @@ Route::get('/cardapio', [ProdutoController::class, 'search'])->name('menu');
 Route::get('/promocoes', [PromocoeController::class, 'index'])->name('promocoes');
 
 //Cadastro
-// Route::get('/cadastro', [SiteController::class,'cadastro'])->name('cadastro')->middleware('guest');
-// Route::POST('/cadastro', [ClienteController::class, 'store'])->name('cadastrar')->middleware('guest');
+Route::get('/cadastro', [ClienteController::class,'cadastro'])->name('cadastro')->middleware('guest');
+Route::POST('/cadastro', [ClienteController::class, 'store'])->name('cadastrar')->middleware('guest');
 
 // //Login
 Route::POST('/entrar', [ClienteController::class, 'entrar'])->middleware('guest');
-Route::get('/entrar', [SiteController::class, 'entrar'])->name('entrar')->middleware('guest');
+Route::get('/entrar', [ClienteController::class, 'cadastrada'])->name('entrar')->middleware('guest');
 
 //Rotas de Logados
 //Reserva
-
 Route::get('/reserva', [ReservaController::class, 'create'])->name('reservar')->middleware('auth');
 Route::POST('/reserva', [ReservaController::class, 'store'])->name('agendar')->middleware('auth');
 
@@ -54,6 +51,25 @@ Route::get('/reserva/edit/{id}', [ReservaController::class, 'edit'])->name('edit
 Route::put('/reserva/update/{id}', [ReservaController::class, 'update'])->name('atualizar')->middleware('auth');
 Route::delete('/dashboard/{id}', [ReservaController::class, 'destroy'])->name('apagar')->middleware('auth');
 
+//Administrativo
+Route::get('/admin/login', [UserController::class, 'administrador'])->name('admin');
+Route::POST('/admin/login', [UserController::class, 'admin'])->name('administrar');
+Route::get('/admin/painel', [UserController::class, 'adminis'])->name('adminis');
+
+// Promoções
+Route::get('/promocoes/create', [PromocoeController::class, 'create'])->name('promocao.abrir');
+Route::POST('/promocoes/create', [PromocoeController::class, 'store'])->name('promocao.criar');
+Route::get('/promocoes/edit/{id}', [PromocoeController::class, 'edit'])->name('promocao.editar');
+Route::put('/promocoes/update/{id}', [PromocoeController::class, 'update'])->name('promocao.atualizar');
+Route::delete('/promocoes/delete/{id}', [PromocoeController::class, 'destroy'])->name('promocao.apagar');
+
+// Clientes
+Route::get('/clientes/edit/{id}', [ClienteController::class, 'edit'])->name('cliente.editar');
+Route::put('/clientes/update/{id}', [ClienteController::class, 'update'])->name('cliente.atualizar');
+Route::delete('/clientes/delete/{id}', [ClienteController::class, 'destroy'])->name('cliente.apagar');
+
+// Reserva
+Route::delete('/reservas/delete/{id}', [ReservaController::class, 'destroy'])->name('reserva.apagar');
 
 //Cookies
 // Route::get('/cookie/set',[SiteController::class, 'setCookie'])->name('setCookie');

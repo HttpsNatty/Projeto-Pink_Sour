@@ -39,7 +39,7 @@ header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Autho
 
 Route::middleware(['cors'])->group(function () {
     //Promocões
-    Route::get('promocoes', [PromocoeController::class, 'index']);
+    Route::get('promocoes', [PromocoeController::class, 'api']);
     //Cardapio
     Route::get('cardapio', [ProdutoController::class, 'index']);
 });

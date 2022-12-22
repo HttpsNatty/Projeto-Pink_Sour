@@ -3,7 +3,7 @@
 @section('title', 'Pink Sour | Reserva')
 
 @section('content')
-<center>
+
 <div class="forms" id="reserva">
     <h1>Faça sua reserva</h1>
     <!-- Formulário de Reserva -->
@@ -71,5 +71,4 @@
     </div>
     </form>
 </div>
-</center>
 @endsection

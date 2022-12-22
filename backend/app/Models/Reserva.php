@@ -23,6 +23,10 @@ class Reserva extends Model
         return $this->belongsTo('App\Models\Cliente');
     }
 
+    public function user() {
+        return $this->hasMany('App\Models\User');
+    }
+
     // public function clientes() {
     //     return $this->belongsToMany('App\Models\Cliente');
     // }

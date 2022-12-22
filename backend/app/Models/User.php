@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -58,4 +60,20 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function reservas() {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function produtos() {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function promocoes() {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function clientes() {
+        return $this->belongsTo('App\Models\User');
+    }
 }
