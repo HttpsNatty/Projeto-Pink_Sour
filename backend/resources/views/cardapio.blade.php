@@ -6,10 +6,8 @@
 
 <h2> Cardapio </h2>
 
-
-
 <div id="pesquisadiv" class="pesquisadiv">
-    <h1>Busque um aperitivo ou uma cerveja</h1>
+    <h1>Busque por aperitivo, cerveja ou sobremesa</h1>
     <form action="/cardapio" method="GET">
         <input type="text" id="pesquisa" name="pesquisa" class="form-control" placeholder="Procurar...">
     </form>
@@ -33,7 +31,7 @@
     </div>
     @endforeach
     @if(count($produtos) == 0 && $pesquisa)
-            <h4>Não foi possível encontrar nenhum evento com {{ $pesquisa }}! <a href="/cardapio"><h4>Ver o menu completo</h4></a></h4>
+            <h4>Não foi possível encontrar nenhum produto com {{ $pesquisa }}! <a href="/cardapio"><h4>Ver o menu completo</h4></a></h4>
         @elseif(count($produtos) == 0)
             <p>Não há itens disponíveis</p>
         @endif

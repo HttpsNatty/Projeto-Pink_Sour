@@ -7,6 +7,7 @@ use App\Http\Controllers\DateTime;
 use App\Http\Requests;
 use App\Models\Reserva;
 use App\Models\Cliente;
+use App\Models\User;
 
 class ReservaController extends Controller
 {
@@ -85,6 +86,15 @@ class ReservaController extends Controller
         return redirect('/dashboard')->with('msg', 'Reserva excluída com sucesso!');
     }
 
+    public function destroy2($id){
+
+        // Procura a reserva pelo id
+        Reserva::findOrFail($id)->delete();
+
+        // Feedback de exclusão com sucesso
+        return redirect(route('admin.painel'))->with('msg', 'Reserva excluída com sucesso!');
+    }
+
     public function edit($id) {
 
         // Cliente precisa estar autenticado
@@ -111,8 +121,8 @@ class ReservaController extends Controller
         // Variavel com a data de hoje para comparação
         $hoje = date('Y/m/d');
 
-         // Confere se a data foi preenchida
-         if($request->data==null){
+        // Confere se a data foi preenchida
+        if($request->data==null){
             return redirect(url('reserva/edit/' . $request->id ))->with('error', 'Reserva incompleta, escolha uma data');
         // Confere se a data preenchida é anterior ao dia de hoje
         }elseif($request->data < $hoje){

@@ -31,11 +31,11 @@ class Cliente extends Authenticatable
         return $this->hasMany('App\Models\Reserva');
     }
 
-    public function reservasFeitas() {
-        return $this->belongsToMany('App\Models\Reserva');
+    public function user() {
+        return $this->belongsTo('App\Models\User');
     }
 
-    public function user() {
-        return $this->hasMany('App\Models\User');
+    public function reservasFeitas() {
+        return $this->belongsToMany('App\Models\Reserva');
     }
 }

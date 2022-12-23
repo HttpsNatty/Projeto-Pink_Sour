@@ -3,7 +3,6 @@
 @section('title', 'Pink Sour | Clube')
 
 @section('content')
-<center>
 
 <!-- <lista.vue
     reservas="{{json_encode($reservas)}}">
@@ -59,5 +58,4 @@
     @endif
     </div>
 </div>
-</center>
 @endsection

@@ -486,7 +486,6 @@ label{
     background-position: center;
     height: 400px;
     padding: 50px;
-    text-align: center;
 }
   
 #pesquisadiv h1 {
@@ -550,14 +549,14 @@ label{
     width: 50%;
 }
 .itens img{
-    display: block;
+    /* display: block; */
     width: 100%;
     height: auto;
 }
 .container {
     position: relative;
     width: 50%;
-    max-width: 300px;
+    /* max-width: 300px; */
 }
 .overlay {
     position: absolute;
@@ -623,43 +622,6 @@ label{
     font-weight: bold;
     margin-bottom: 30px;
 }
-
-/* Administrador */
-body, html {
-    height: 100%;
-    margin: 0;
-    font-family: Arial;
-  }
-  
-  /* Style tab links */
-  .tablink {
-    background-color: #555;
-    color: white;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    font-size: 17px;
-    width: 25%;
-  }
-  
-  .tablink:hover {
-    background-color: #777;
-  }
-  
-  /* Style the tab content (and add height:100% for full page content) */
-  .tabcontent {
-    color: white;
-    display: none;
-    padding: 100px 20px;
-    height: 100%;
-  }
-  
-  #Produtos {background-color: #ca786d;}
-  #Promocoes {background-color: #91cc5a;}
-  #Clientes {background-color: #d6a173}
-  #Reservas {background-color: #917ace;}
 
 /* footer */
 footer {

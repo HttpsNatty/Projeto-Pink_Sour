@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -61,19 +59,20 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function reservas() {
-        return $this->belongsTo('App\Models\User');
-    }
-
     public function produtos() {
-        return $this->belongsTo('App\Models\User');
+        return $this->hasMany('App\Models\Produto');
     }
-
+    
     public function promocoes() {
-        return $this->belongsTo('App\Models\User');
+        return $this->hasMany('App\Models\Promocoe');
     }
 
     public function clientes() {
-        return $this->belongsTo('App\Models\User');
+        return $this->hasMany('App\Models\Cliente');
     }
+
+    public function reservas() {
+        return $this->hasMany('App\Models\Reserva');
+    }
+
 }

@@ -15,10 +15,11 @@
 
     <!-- CSS da aplicação -->
     <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/scripts.js"></script>
     
     <!-- Vue.js -->
-    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="src/app.js" defer></script> -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="src/app.js" defer></script>
 
     <?php
     date_default_timezone_set('America/Sao_Paulo');
@@ -42,7 +43,7 @@
                         </a>
                     </form>
                     <a href="/dashboard" class="split">Eu</a>
-                    <img src="/img/Usuw.png" class="split" id="imagem-nav"alt="foto de usuario">
+                    <!-- <img src="/img/Usuw.png" class="split" id="imagem-nav"alt="foto de usuario"> -->
             @endauth
             @guest
                 <a href="/entrar" class="split">Login</a>

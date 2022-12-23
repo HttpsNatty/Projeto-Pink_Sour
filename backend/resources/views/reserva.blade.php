@@ -7,7 +7,7 @@
 <div class="forms" id="reserva">
     <h1>Faça sua reserva</h1>
     <!-- Formulário de Reserva -->
-    <form name="reserva" method="POST" action="{{route('agendar')}}">
+    <form name="reserva" method="POST" action="">
     @csrf
     <div> <!-- Campo Nome -->
         <label for="nome">Nome da Reserva:</label>

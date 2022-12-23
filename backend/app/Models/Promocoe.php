@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Promocoe extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = [
         'nome',
         'descricao'
     ];
 
     public function user() {
-        return $this->hasMany('App\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
 }

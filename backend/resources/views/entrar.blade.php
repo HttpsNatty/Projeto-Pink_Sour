@@ -4,6 +4,10 @@
 
 @section('content')
 
+@error('email')
+{{ $message }}
+@enderror
+
 <div class="forms">
     <h1><img id="garrafa" width="260px" src="/img/pinks.png">Login<img id="garrafa" width="260px" src="/img/pinks.png"></h1>
     <br>
@@ -11,14 +15,14 @@
         @csrf
         <div class="row">
         <div class="col-75">
-            <input type="email" id="email" name="email"<?php if(!empty($erronome)){echo "class='invalido'";}?><?php if (isset($_POST['nome'])){echo "value='".$_POST['nome']."'";} ?> placeholder="Digite seu email"><br>
+            <input type="email" id="email" name="email" placeholder="Digite seu email"><br>
         </div></div>
         @if (Auth::check()) 
 <p>esta autenticado</p>
 @endif
         <div class="row">
         <div class="col-75">
-            <input id="senha" name="senha" type="password" <?php if(!empty($errosenha)){echo "class='invalido'";}?><?php if (isset($_POST['senha'])){echo "value='".$_POST['senha']."'";} ?> placeholder="Digite sua senha">
+            <input id="senha" name="senha" type="password" placeholder="Digite sua senha">
             <img id="olho" onclick=mostraSenha() width="25px" src="/img/close.svg">
             <br>
         </div></div>

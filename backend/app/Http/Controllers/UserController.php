@@ -3,59 +3,49 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-
 use Illuminate\Http\Response;
+use App\Http\Controllers\DateTime;
 use App\Http\Requests;
 use App\Http\Controller\Controllers;
-use App\Http\Controllers\ProdutoController;
-use App\Http\Controllers\PromocoeController;
-use App\Http\Controllers\ClienteController;
-use App\Http\Controllers\ReservaController;
-
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
-use App\Models\Reserva;
-use App\Models\Cliente;
 use App\Models\Produto;
 use App\Models\Promocoe;
+use App\Models\Cliente;
+use App\Models\Reserva;
 
 class UserController extends Controller
 {   
-    public function admin(Request $request) {
+    public function adminEntrar() {
+
+        return view('admin');
+    }
+
+    public function administrando(Request $request){
+                
         $email = $request->input('email');
         $senha = $request->input('senha');
 
         if($email==null || $senha==null){
-            return redirect(route('admin'))->with('msg', 'Login incorreto');
-        }
+            return redirect('adm')->with('error', 'Login incorreto');
+        } 
         
-        $admin = User::query()
+        $user = User::query()
             ->where('email', $request->input('email'))
             ->first();
-        
-        $admin = User::find(1);
 
-        if($email != $admin->email){
-            return redirect(route('admin'))->with('msg', 'Login incorreto');
+        $user = User::find(1);
+
+        if($request->senha != $user->senha){
+            return redirect('adm')->with('error', 'Senha incorreta');
         }
-
-        if($senha != $admin->password){
-            return redirect(route('admin'))->with('msg', 'Senha incorreta');
-        }
-
        
-    }
-    
-    public function administrador(){
-        return view('admin');
+        Auth::login($user);
+        return redirect(route('admin.painel'))->with('msg', 'Login com sucesso!');
     }
 
-    public function adminis(){
+    public function painel(){
 
         $produtos = Produto::all();
         $promocoes = Promocoe::all();
@@ -65,15 +55,4 @@ class UserController extends Controller
         return view('painel', ['produtos' => $produtos, 'promocoes' => $promocoes, 'clientes' => $clientes, 'reservas' => $reservas]);
     }
 
-    // public function setCookie(Request $request){
-    //     $tempo = 86400*30;
-    //     $response = new Response('Set Cookie');
-    //     $response->withCookie(cookie('$cliente->nome', 'MyValue', $tempo));
-    //     return $response;
-    // }
-
-    // public function getCookie(Request $request){
-    //     $value = $request->cookie('nome');
-    //     echo $value;
-    // }
 }
